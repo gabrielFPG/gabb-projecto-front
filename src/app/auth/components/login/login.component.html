@@ -3,10 +3,10 @@
 {{LoginForm.valid}}
 
 <form [formGroup]="LoginForm">
-    <label>ingrese correo:</label>
+    <label>Ingrese correo: </label>
     <input type="email" formControlName="email">
     <br>
-    <label>ingrese contraseña:</label>
+    <label>Ingrese contraseña: </label>
     <input type="password" formControlName="password">
     <br>
     <button (click)="funIngresar()" [disabled]="!LoginForm.valid">Ingresar</button>

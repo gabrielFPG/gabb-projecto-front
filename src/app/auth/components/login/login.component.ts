@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,15 +9,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent {
 
-  private http = inject(HttpClient)
+  private authService=inject(AuthService)
 
   LoginForm=new FormGroup({
-    email:new FormControl(" ", [Validators.email, Validators.required]), //valores que quedan por defecto....en la clase
+    email:new FormControl("", [Validators.email, Validators.required]), //valores que quedan por defecto....en la clase
     password:new FormControl("", Validators.required)
   })
 
   funIngresar(){
-    this.http.get("http://jsonplaceholder.typicode.com/todos/1").subscribe(
+    this.authService.loginConNest(this.LoginForm.value).subscribe(
       (res)=>{
         console.log(res)
       },
@@ -25,7 +25,6 @@ export class LoginComponent {
         console.log(error)
       }
     )
-  
-    alert("ingresando....")
+    //alert("ingresando....")
   }
 }
